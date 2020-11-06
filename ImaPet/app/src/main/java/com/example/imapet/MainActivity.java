@@ -4,17 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +37,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button registerButton = (Button)findViewById(R.id.registerButton);
+        Button listButton = (Button)findViewById(R.id.listAccounts);
+        StringBuilder s = new StringBuilder(1000);
+
+        listButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView accountList = (TextView) findViewById(R.id.accountList);
+                accountList.setText("");
+                db.collection("Users")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    int count = 1;
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        s.append("Account " + count);
+                                        s.append(document.getData().toString());
+                                        s.append("\n\n");
+                                        count++;
+                                    }
+                                    accountList.setText(s);
+                                } else {
+
+                                }
+                            }
+                        });
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
