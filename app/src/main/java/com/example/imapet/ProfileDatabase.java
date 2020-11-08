@@ -55,4 +55,22 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         Cursor retrieval = sqLiteDatabase.rawQuery("SELECT * FROM " + NAME_OF_TABLE, null);
         return retrieval;
     }
+
+    public boolean updateProfile (String username, String profileName, String status, String aboutMe) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COL_1, username);
+        contentValues.put(COL_2, profileName);
+        contentValues.put(COL_3, status);
+        contentValues.put(COL_4, aboutMe);
+
+        sqLiteDatabase.update(NAME_OF_TABLE, contentValues, "Username = ?", new String[] {username});
+        return true;
+    }
+
+    public Integer deleteProfileData (String username) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        return sqLiteDatabase.delete(NAME_OF_TABLE, "Username = ?", new String[] {username});
+    }
 }
