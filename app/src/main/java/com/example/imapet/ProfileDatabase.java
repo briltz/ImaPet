@@ -32,7 +32,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData (String username, String profileName, String status, String aboutMe) {
+    public boolean insertProfileData (String username, String profileName, String status, String aboutMe) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 

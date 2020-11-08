@@ -44,13 +44,18 @@ public class Profile extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        boolean isCreated = profileDB.insertData(userName.getText().toString(), profileName.getText().toString(), status.getText().toString(), description.getText().toString());
-
-                        if (isCreated == true) {
-                            Toast.makeText(Profile.this, "Profile Created", Toast.LENGTH_LONG).show();
+                        if ((userName.getText().toString()).isEmpty() || (userName.getText().toString().matches("^\\s*$"))) {
+                            Toast.makeText(Profile.this, "Error: cannot create a profile without a username", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(Profile.this, "Error: failed to create profile!", Toast.LENGTH_LONG).show();
+                            boolean isCreated = profileDB.insertProfileData(userName.getText().toString(), profileName.getText().toString(), status.getText().toString(), description.getText().toString());
+
+                            if (isCreated == true) {
+                                Toast.makeText(Profile.this, "Profile Created", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(Profile.this, "Error: failed to create profile!", Toast.LENGTH_LONG).show();
+                            }
                         }
+
                     }
                 }
         );

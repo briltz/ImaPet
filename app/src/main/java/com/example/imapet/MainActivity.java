@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 String usernameText = username.getText().toString();
                 String passwordText = password.getText().toString();
 
-                if(emailText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty()) { return; }
+                if(emailText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty() || emailText.matches("^\\s*$") || usernameText.matches("^\\s*$") || passwordText.matches("^\\s*$")) { return; }
                 Map<String, Object> accountToSave = new HashMap<String, Object>();
                 accountToSave.put(EMAIL_KEY, emailText);
                 accountToSave.put(USERNAME_KEY, usernameText);
