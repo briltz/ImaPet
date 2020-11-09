@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ImaPet</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create Account</string>
+    <string name="update_account">Update Account</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="profile">My Profile</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="status">Status</string>
+    <string name="description">A Little About Me</string>
+
+    <string name="btn_create_profile">Create Profile</string>
+    <string name="btn_view_profiles">View Profiles</string>
+    <string name="btn_update_profile">Update Profile</string>
+    <string name="btn_delete_profile">Delete Profile</string>
+    <string name="list_accounts">List Accounts</string>
+</resources>
