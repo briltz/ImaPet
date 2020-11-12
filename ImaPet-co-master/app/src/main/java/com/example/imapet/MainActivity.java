@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EMAIL_KEY = "email";
     public static final String USERNAME_KEY = "username";
     public static final String PASSWORD_KEY = "password";
+    public static final String ADMIN_KEY = "admin";
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -37,10 +38,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button registerButton = (Button)findViewById(R.id.registerButton);
-        Button listButton = (Button)findViewById(R.id.listAccounts);
-        Button updateButton = (Button)findViewById(R.id.updateButton);
-        Button deleteButton = (Button)findViewById(R.id.deleteButton);
+        Button loginPageButton = (Button)findViewById(R.id.loginPageButton);
 
+        loginPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Login.class));
+            }
+        });
+
+        /*
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+         */
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 EditText email = (EditText) findViewById(R.id.email);
@@ -170,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 accountToSave.put(EMAIL_KEY, emailText);
                 accountToSave.put(USERNAME_KEY, usernameText);
                 accountToSave.put(PASSWORD_KEY, passwordText);
+                accountToSave.put(ADMIN_KEY, false);
 
                 db.collection("Users")
                         .add(accountToSave)
@@ -178,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(MainActivity.this, "Account created successfully",
                                         Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this, Profile.class));
+                                startActivity(new Intent(MainActivity.this, Login.class));
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

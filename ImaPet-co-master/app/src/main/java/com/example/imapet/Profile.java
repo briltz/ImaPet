@@ -3,6 +3,7 @@ package com.example.imapet;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -51,6 +52,7 @@ public class Profile extends AppCompatActivity {
 
                             if (isCreated == true) {
                                 Toast.makeText(Profile.this, "Profile Created", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(Profile.this, ProfilePage.class));
                             } else {
                                 Toast.makeText(Profile.this, "Error: failed to create profile!", Toast.LENGTH_LONG).show();
                             }
