@@ -9,7 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ImaPet">
-        <activity android:name=".ProfilePage"></activity>
+        <activity android:name=".CreatePost"></activity>
+        <activity
+            android:name=".PostListActivity"
+            android:label="@string/title_post_list"
+            android:theme="@style/Theme.ImaPet.NoActionBar" />
+        <activity
+            android:name=".PostDetailActivity"
+            android:label="@string/title_post_detail"
+            android:parentActivityName=".PostListActivity"
+            android:theme="@style/Theme.ImaPet.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.imapet.PostListActivity" />
+        </activity>
+        <activity android:name=".ProfilePage" />
         <activity android:name=".Login" />
         <activity android:name=".Profile" />
         <activity android:name=".MainActivity">
