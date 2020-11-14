@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">ImaPet</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create Account</string>
+    <string name="update_account">Update Account</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="login">Login</string>
+    <string name="noacc">Don\'t have an account?</string>
+    <string name="haveacc">Already have an account?</string>
+
+    <string name="create_post">Create Post</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="take_photo">Take a Photo</string>
+    <string name="caption">Caption</string>
+    <string name="share_location">Share Location?</string>
+    <string name="location">Location</string>
+    <string name="share">Share</string>
+
+    <string name="community">Community</string>
+    <string name="edit_account">Edit Profile</string>
+    <string name="logout">Log Out</string>
+    <string name="posts">My Posts</string>
+
+    <string name="profile">My Profile</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="status">Status</string>
+    <string name="birthday">Birthday</string>
+    <string name="description">A Little About Me</string>
+
+    <string name="btn_create_profile">Create Profile</string>
+    <string name="btn_view_profiles">View Profiles</string>
+    <string name="btn_update_profile">Update Profile</string>
+    <string name="btn_delete_profile">Delete Profile</string>
+    <string name="list_accounts">List Accounts</string>
+    <string name="title_activity_profile_page">ProfilePage</string>
+
+    <string name="title_of_post">Title of Post</string>
+    <string name="content_of_post">Content</string>
+
+    <string name="switch_location_title">Share Location</string>
+    <string name="switch_location_summary">Turn Location on or off</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_post_list">Posts</string>
+    <string name="title_post_detail">Post Detail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
