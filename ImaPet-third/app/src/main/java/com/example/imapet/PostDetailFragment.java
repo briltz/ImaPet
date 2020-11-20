@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -96,6 +97,20 @@ public class PostDetailFragment extends Fragment {
                 }
             });
 
+            Button locationButton = (Button)rootView.findViewById(R.id.viewLocation);
+
+            if(mItem.location.equals("no location")){
+                locationButton.setVisibility(View.GONE);
+            }
+
+            locationButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), GoogleMaps.class);
+                    intent.putExtra("LOCATION", mItem.location);
+                    startActivity(intent);
+                }
+            });
 
             ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
