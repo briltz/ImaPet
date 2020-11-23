@@ -120,6 +120,14 @@ public class ProfilePage extends AppCompatActivity {
         FloatingActionButton newPost = (FloatingActionButton)findViewById(R.id.newPost);
         FloatingActionButton editProfile = (FloatingActionButton) findViewById(R.id.editProfile);
 
+        FloatingActionButton calculatePetYear = (FloatingActionButton) findViewById(R.id.calculateAge);
+
+        calculatePetYear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfilePage.this, Calculator.class));
+            }
+        });
 
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,9 +52,14 @@ public class Login extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         if(document.get("username").equals(usernameText) && document.get("password").equals(passwordText)){
-                                            Toast.makeText(Login.this, "Login successful",
+                                            Toast.makeText(Login.this, "Login Successful",
                                                     Toast.LENGTH_LONG).show();
-                                            startActivity(new Intent(Login.this, Profile2.class));
+                                            if(document.get("admin").toString().equals("true")){
+                                                startActivity(new Intent(Login.this, AdminControls.class));
+                                            }
+                                            else {
+                                                startActivity(new Intent(Login.this, Profile2.class));
+                                            }
                                         }
                                     }
                                 } else {

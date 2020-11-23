@@ -58,13 +58,6 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         return retrieval;
     }
 
-    public Cursor getSingleProfile(String username) {
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor retrieval2 = sqLiteDatabase.rawQuery("SELECT ProfileName, Status, " +
-                "ALittleAboutMe FROM " + NAME_OF_TABLE + " WHERE Username = username", null);
-        return retrieval2;
-    }
-
     public boolean updateProfile (String username, String profileName, String status, String aboutMe, String birthday) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

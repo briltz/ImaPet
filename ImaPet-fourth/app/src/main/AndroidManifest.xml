@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ImaPet">
-        <activity android:name=".GoogleMaps"></activity>
+        <activity android:name=".AdminControls"></activity>
+        <activity android:name=".Calculator" />
+        <activity android:name=".GoogleMaps" />
         <activity android:name=".EditProfile" />
         <activity android:name=".Profile2" />
         <activity

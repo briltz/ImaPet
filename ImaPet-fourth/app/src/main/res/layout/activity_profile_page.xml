@@ -19,8 +19,8 @@
     <Button
         android:id="@+id/communityButton"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="107dp"
-        android:layout_height="52dp"
+        android:layout_width="109dp"
+        android:layout_height="51dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:text="@string/community"
@@ -159,7 +159,7 @@
                     app:layout_constraintHorizontal_bias="0.87"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.796"
+                    app:layout_constraintVertical_bias="0.733"
                     app:srcCompat="@android:drawable/ic_menu_edit" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -172,7 +172,7 @@
                     app:layout_constraintHorizontal_bias="0.87"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.906"
+                    app:layout_constraintVertical_bias="0.847"
                     app:srcCompat="@android:drawable/ic_input_add" />
 
                 <TextView
@@ -187,6 +187,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.602" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/calculateAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.87"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.619"
+                    app:srcCompat="@drawable/calc2" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
@@ -195,12 +208,18 @@
     <Button
         android:id="@+id/logoutButton"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="208dp"
-        android:layout_marginLeft="208dp"
+        android:layout_width="103dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
         android:text="@string/logout"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/toolbar" />
+        app:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

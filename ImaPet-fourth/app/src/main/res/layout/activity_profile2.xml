@@ -84,8 +84,8 @@
 
     <Button
         android:id="@+id/btn_birthday"
-        android:layout_width="148dp"
-        android:layout_height="49dp"
+        android:layout_width="114dp"
+        android:layout_height="50dp"
         android:text="@string/birthday"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,8 +96,8 @@
 
     <EditText
         android:id="@+id/myBirthday"
-        android:layout_width="141dp"
-        android:layout_height="51dp"
+        android:layout_width="121dp"
+        android:layout_height="50dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
