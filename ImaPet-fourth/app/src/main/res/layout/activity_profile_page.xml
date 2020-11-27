@@ -71,28 +71,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="674dp">
 
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
-                    android:layout_marginTop="532dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.204"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="126dp"
-                    android:layout_height="126dp"
-                    android:layout_marginTop="532dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.788"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
-
                 <TextView
                     android:id="@+id/txtStatus"
                     android:layout_width="256dp"
@@ -112,18 +90,6 @@
                     android:text="@string/description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.462"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="492dp"
-                    android:text="@string/posts"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.501"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

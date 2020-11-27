@@ -37,8 +37,10 @@
         android:layout_marginBottom="32dp"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_delete"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone" />
 
     <Button
         android:id="@+id/viewLocation"

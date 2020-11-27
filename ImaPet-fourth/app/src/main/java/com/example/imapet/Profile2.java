@@ -34,6 +34,7 @@ public class Profile2 extends AppCompatActivity {
     public static final String BIRTHDAY_KEY = "birthday";
     public static final String DESCRIPTION_KEY = "description";
     public static final String PICTURE_KEY = "picture";
+    public static final String ACCOUNT_KEY = "account";
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -47,6 +48,8 @@ public class Profile2 extends AppCompatActivity {
         Button createProfile = (Button)findViewById(R.id.createProfileButton);
         Button enterBirthday = (Button) findViewById(R.id.btn_birthday);
         birthday = (EditText) findViewById(R.id.myBirthday);
+
+        String account = getIntent().getStringExtra("ACCOUNT");
 
         enterBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,24 +77,46 @@ public class Profile2 extends AppCompatActivity {
                 profileToSave.put(BIRTHDAY_KEY, birthdayText);
                 profileToSave.put(DESCRIPTION_KEY, descriptionText);
                 profileToSave.put(PICTURE_KEY, "");
+                profileToSave.put(ACCOUNT_KEY, account);
 
                 db.collection("Profiles")
-                        .add(profileToSave)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(Profile2.this, "Profile created successfully",
-                                        Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Profile2.this, ProfilePage.class);
-                                intent.putExtra("PROFILE", documentReference.getId());
-                                startActivity(intent);
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Profile2.this, "Error saving profile information",
-                                        Toast.LENGTH_LONG).show();
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                boolean found = false;
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if(document.get("name").equals(nameText)){
+                                            Toast.makeText(Profile2.this, "A profile with that name already exists", Toast.LENGTH_LONG).show();
+                                            found = true;
+                                        }
+                                    }
+                                    if(!found){
+                                        db.collection("Profiles")
+                                                .add(profileToSave)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        Toast.makeText(Profile2.this, "Profile created successfully",
+                                                                Toast.LENGTH_LONG).show();
+                                                        Intent intent = new Intent(Profile2.this, ProfilePage.class);
+                                                        intent.putExtra("PROFILE", documentReference.getId());
+                                                        startActivity(intent);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(Profile2.this, "Error saving profile information",
+                                                                Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                    }
+                                } else {
+                                    Toast.makeText(Profile2.this, "Unable to reach login server",
+                                            Toast.LENGTH_LONG).show();
+                                }
                             }
                         });
             }
@@ -109,9 +134,8 @@ public class Profile2 extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        if(document.get("name").equals(profileNameText)){
-                                            Toast.makeText(Profile2.this, "Login successful",
-                                                    Toast.LENGTH_LONG).show();
+                                        if(document.get("name").equals(profileNameText) && document.get("account").equals(account)){
+                                            Toast.makeText(Profile2.this, "Login successful", Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(Profile2.this, ProfilePage.class);
                                             intent.putExtra("PROFILE", document.getId());
                                             startActivity(intent);

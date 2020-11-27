@@ -37,6 +37,7 @@ public class PostListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    static String profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class PostListActivity extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         //toolbar.setTitle("Community");
 
-        String profile = getIntent().getStringExtra("PROFILE");
+        profile = getIntent().getStringExtra("PROFILE");
 
         Button profileButton = (Button)findViewById(R.id.profileButton);
 
@@ -109,7 +110,7 @@ public class PostListActivity extends AppCompatActivity {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, PostDetailActivity.class);
                     intent.putExtra(PostDetailFragment.ARG_ITEM_ID, item.id);
-
+                    intent.putExtra("PROFILE", profile);
                     context.startActivity(intent);
                 }
             }

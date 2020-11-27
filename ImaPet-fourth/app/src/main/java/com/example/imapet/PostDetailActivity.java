@@ -30,6 +30,7 @@ public class PostDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +39,7 @@ public class PostDetailActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+         */
 
         /*
         // Show the Up button in the action bar.
@@ -62,6 +64,8 @@ public class PostDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putString(PostDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(PostDetailFragment.ARG_ITEM_ID));
+            arguments.putString("PROFILE",
+                    getIntent().getStringExtra("PROFILE"));
             PostDetailFragment fragment = new PostDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

@@ -174,7 +174,10 @@ public class MainActivity extends AppCompatActivity {
                 String usernameText = username.getText().toString();
                 String passwordText = password.getText().toString();
 
-                if(emailText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty()  || emailText.matches("^\\s*$") || usernameText.matches("^\\s*$") || passwordText.matches("^\\s*$")) { return; }
+                if (emailText.isEmpty() || usernameText.isEmpty() || passwordText.isEmpty() || emailText.matches("^\\s*$") || usernameText.matches("^\\s*$") || passwordText.matches("^\\s*$")) {
+                    Toast.makeText(MainActivity.this, "Missing information", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Map<String, Object> accountToSave = new HashMap<String, Object>();
                 accountToSave.put(EMAIL_KEY, emailText);
                 accountToSave.put(USERNAME_KEY, usernameText);
@@ -182,20 +185,49 @@ public class MainActivity extends AppCompatActivity {
                 accountToSave.put(ADMIN_KEY, false);
 
                 db.collection("Users")
-                        .add(accountToSave)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(MainActivity.this, "Account created successfully",
-                                        Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(MainActivity.this, Profile2.class));
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, "Error saving account information",
-                                        Toast.LENGTH_LONG).show();
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                boolean found = false;
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if(document.get("username").equals(usernameText)){
+                                            Toast.makeText(MainActivity.this, "An account with that username already exists",
+                                                    Toast.LENGTH_LONG).show();
+                                            found = true;
+                                        }
+                                        if(document.get("email").equals(emailText)){
+                                            Toast.makeText(MainActivity.this, "An account with that email already exists",
+                                                    Toast.LENGTH_LONG).show();
+                                            found = true;
+                                        }
+                                    }
+                                    if(!found){
+                                        db.collection("Users")
+                                                .add(accountToSave)
+                                                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                    @Override
+                                                    public void onSuccess(DocumentReference documentReference) {
+                                                        Toast.makeText(MainActivity.this, "Account created successfully",
+                                                                Toast.LENGTH_LONG).show();
+                                                        Intent intent = new Intent(MainActivity.this, Profile2.class);
+                                                        intent.putExtra("ACCOUNT", usernameText);
+                                                        startActivity(intent);
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(MainActivity.this, "Error saving account information",
+                                                                Toast.LENGTH_LONG).show();
+                                                    }
+                                                });
+                                    }
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Unable to reach login server",
+                                            Toast.LENGTH_LONG).show();
+                                }
                             }
                         });
             }

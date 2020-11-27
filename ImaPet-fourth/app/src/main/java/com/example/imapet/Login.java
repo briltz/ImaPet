@@ -58,7 +58,9 @@ public class Login extends AppCompatActivity {
                                                 startActivity(new Intent(Login.this, AdminControls.class));
                                             }
                                             else {
-                                                startActivity(new Intent(Login.this, Profile2.class));
+                                                Intent intent = new Intent(Login.this, Profile2.class);
+                                                intent.putExtra("ACCOUNT", document.get("username").toString());
+                                                startActivity(intent);
                                             }
                                         }
                                     }

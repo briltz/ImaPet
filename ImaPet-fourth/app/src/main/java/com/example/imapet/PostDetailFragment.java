@@ -19,10 +19,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.imapet.dummy.DummyContent;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -82,17 +87,36 @@ public class PostDetailFragment extends Fragment {
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageReference = storage.getReference();
             StorageReference ref = storageReference.child("images/" + mItem.image);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             txt.setText("Posted by: " + mItem.author + ", at location: " + mItem.location);
 
+            String username = "";
+
             FloatingActionButton deleteButton = (FloatingActionButton) rootView.findViewById(R.id.deletePostButton);
+
+            DocumentReference docRef = db.collection("Profiles").document(getArguments().getString("PROFILE"));
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            if(document.get("name").equals(mItem.author)){
+                                deleteButton.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }
+                }
+            });
+
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     db.collection("Posts").document(mItem.document).delete();
                     Intent intent = new Intent(getContext(), ProfilePage.class);
-                    intent.putExtra("PROFILE", mItem.author);
+                    intent.putExtra("PROFILE", getArguments().getString("PROFILE"));
                     startActivity(intent);
                 }
             });
